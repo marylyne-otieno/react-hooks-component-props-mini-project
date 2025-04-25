@@ -1,6 +1,6 @@
 import logo from "../assets/logo";
 
-const blogData = {
+const blog = {
   name: "Underreacted",
   image: logo,
   about: "A blog about learning React",
@@ -28,4 +28,4 @@ const blogData = {
   ],
 };
 
-export default blogData;
+export default blog;

@@ -1,4 +1,4 @@
-/*import "@testing-library/jest-dom";
+import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import About from "../components/About"; // Make sure this path is correct
 import logo from "../assets/logo"; // Assuming the logo is in the correct location
@@ -28,16 +28,3 @@ test("renders a <p> with the about text", () => {
   expect(p).toBeInTheDocument();
   expect(p.tagName).toBe("P");
 });
-*/
-import React from "react";
-
-function About({ image = "https://via.placeholder.com/215", about }) {
-  return (
-    <aside>
-      <img src={image} alt="blog logo" />
-      <p>{about}</p>
-    </aside>
-  );
-}
-
-export default About;

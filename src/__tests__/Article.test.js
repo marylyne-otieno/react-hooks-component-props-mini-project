@@ -1,131 +1,40 @@
 
-/*import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import Article from "../components/Article";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom'; // Add this import
+import Article from '../components/Article.js'; // Adjust path and extension as needed
 
-test("renders a <article> element", () => {
-  const { container } = render(
-    <Article
-      title={"Components 101"}
-      date={"December 15, 2020"}
-      preview={"Setting up the building blocks of your site"}
-    />
-  );
-  expect(container.querySelector("article")).toBeInTheDocument();
+describe('Article Component', () => {
+  test('renders article with title, date, and preview', () => {
+    const title = 'Test Article';
+    const date = 'April 25, 2025';
+    const preview = 'This is a test preview.';
+
+    render(<Article title={title} date={date} preview={preview} />);
+
+    expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(title);
+    expect(screen.getByText(date)).toBeInTheDocument();
+    expect(screen.getByText(preview)).toBeInTheDocument();
+  });
+
+  test('renders default date when date prop is not provided', () => {
+    const title = 'Test Article';
+    const preview = 'This is a test preview.';
+
+    render(<Article title={title} preview={preview} />);
+
+    expect(screen.getByText('January 1, 1970')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(title);
+    expect(screen.getByText(preview)).toBeInTheDocument();
+  });
+
+  test('renders without crashing with only required props', () => {
+    const title = 'Minimal Article';
+    const preview = 'Minimal preview.';
+
+    render(<Article title={title} preview={preview} />);
+
+    expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(title);
+    expect(screen.getByText(preview)).toBeInTheDocument();
+  });
 });
-
-test("renders a <h3> with the title of the post", () => {
-  render(
-    <Article
-      title={"Components 101"}
-      date={"December 15, 2020"}
-      preview={"Setting up the building blocks of your site"}
-    />
-  );
-  const h3 = screen.queryByText(/Components 101/);
-  expect(h3).toBeInTheDocument();
-  expect(h3.tagName).toBe("H3");
-});
-
-test("renders a <small> with the date of the post", () => {
-  render(
-    <Article
-      title={"Components 101"}
-      date={"December 15, 2020"}
-      preview={"Setting up the building blocks of your site"}
-    />
-  );
-  const small = screen.queryByText(/December 15, 2020/);
-  expect(small).toBeInTheDocument();
-  expect(small.tagName).toBe("SMALL");
-});
-
-test("uses a default value for the date if no date is passed as a prop", () => {
-  render(
-    <Article
-      title={"Components 101"}
-      preview={"Setting up the building blocks of your site"}
-    />
-  );
-  const small = screen.queryByText(/January 1, 1970/);
-  expect(small).toBeInTheDocument();
-});
-
-test("renders a <p> with the preview text", () => {
-  render(
-    <Article
-      title={"Components 101"}
-      date={"December 15, 2020"}
-      preview={"Setting up the building blocks of your site"}
-    />
-  );
-  const p = screen.queryByText(/Setting up the building blocks of your site/);
-  expect(p).toBeInTheDocument();
-  expect(p.tagName).toBe("P");
-});
-*/
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import Article from "./Article.test.js"; // Ensure the path is correct
-
-test("renders a <article> element", () => {
-  const { container } = render(
-    <Article
-      title="Components 101"
-      date="December 15, 2020"
-      preview="Setting up the building blocks of your site"
-    />
-  );
-  expect(container.querySelector("article")).toBeInTheDocument();
-});
-
-test("renders a <h3> with the title of the post", () => {
-  render(
-    <Article
-      title="Components 101"
-      date="December 15, 2020"
-      preview="Setting up the building blocks of your site"
-    />
-  );
-  const h3 = screen.queryByText(/Components 101/);
-  expect(h3).toBeInTheDocument();
-  expect(h3.tagName).toBe("H3");
-});
-
-test("renders a <small> with the date of the post", () => {
-  render(
-    <Article
-      title="Components 101"
-      date="December 15, 2020"
-      preview="Setting up the building blocks of your site"
-    />
-  );
-  const small = screen.queryByText(/December 15, 2020/);
-  expect(small).toBeInTheDocument();
-  expect(small.tagName).toBe("SMALL");
-});
-
-test("uses a default value for the date if no date is passed as a prop", () => {
-  render(
-    <Article
-      title="Components 101"
-      preview="Setting up the building blocks of your site"
-    />
-  );
-  const small = screen.queryByText(/January 1, 1970/);
-  expect(small).toBeInTheDocument();
-});
-
-test("renders a <p> with the preview text", () => {
-  render(
-    <Article
-      title="Components 101"
-      date="December 15, 2020"
-      preview="Setting up the building blocks of your site"
-    />
-  );
-  const p = screen.queryByText(/Setting up the building blocks of your site/);
-  expect(p).toBeInTheDocument();
-  expect(p.tagName).toBe("P");
-});
-
